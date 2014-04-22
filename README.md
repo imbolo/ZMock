@@ -14,7 +14,8 @@ KISSY mock tool
 如：
 
 	ZMock.mock({
-		url: /\.json/,   
+		url: /\.json/,
+		type: 'post',   
 		data: null,
 		process: function(data) {
 			if (data.page == 1) {
@@ -32,5 +33,6 @@ KISSY mock tool
 参数说明 
 
 + url: url地址，可以是字符串或者正则表达式  
-+ data:  
-+ process: 
++ type: 'post','get'...; 不定义时匹配所有
++ data: 返回数据 
++ process: 处理逻辑，参数data为ajax请求传入过来的参数组成的对象

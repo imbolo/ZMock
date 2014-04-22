@@ -35,6 +35,9 @@ KISSY.use('io', function(S, IO) {
 		
 			var mock = ZMock._mocked[surl];
 			
+			//match get post ...
+			if (options.type !== undefined && mock.type !== undefined && mock.type !== options.type) continue;
+			
 			//match url
 			if (KISSY.type(mock.url) === "string" ) {
 				if (mock.url !== options.url) continue;
