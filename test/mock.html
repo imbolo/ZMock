@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+	<head>
+		<script src="http://g.tbcdn.cn/kissy/k/1.4.1/seed.js" ></script>
+		<script src="../zmock.js" type="text/javascript" charset="utf-8"></script>
+		<script src="mockconfig.js" type="text/javascript" charset="utf-8"></script>
+		
+	</head>
+	<body>
+		
+		<button id="btn">btn</button>
+		
+		<script>
+
+		KISSY.use('io', function(S, IO) {
+			
+			S.io({
+				url: '/test/hello.json',
+				type: 'post', 
+				data: {page: 1},
+				dataType:'json',
+				success: function(data) {
+					console.log(data);
+				}
+			});
+			
+			S.io({
+				url: '/test/hello.json',
+				data: {page: 2},
+				dataType:'json',
+				success: function(data) {
+					console.log(data);
+				}
+			});
+	
+		});
+		
+		</script>
+	</body>
+</html>
