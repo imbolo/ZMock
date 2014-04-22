@@ -10,7 +10,7 @@ ZMock.mock = function(options) {
 	var url = options.url,
 		type = options.type;
 	
-	// options.data = options.data || {};
+	options.data = options.data || {};
 	
 	ZMock._mocked[url + (type || '')] = options;	
 }
@@ -30,12 +30,10 @@ KISSY.use('io', function(S, IO) {
 	var original_ajax = KISSY.io;
 	
 	KISSY.io = function( options ) {
-		
-		var mock, tmpMockData;
-		
+
 		for (var surl in ZMock._mocked) {
 		
-			mock = ZMock._mocked[surl];
+			var mock = ZMock._mocked[surl];
 			
 			//match get post ...
 			if (options.type !== undefined && mock.type !== undefined && mock.type !== options.type) continue;
@@ -50,8 +48,7 @@ KISSY.use('io', function(S, IO) {
 			
 			//
 			if (mock.process) {
-				tmpMockData = mock.process.call(mock, options.data);
-				mock.data = tmpMockData || mock.data;
+				mock.process.call(mock, options.data);
 			}
 
 			if (options.success) {
