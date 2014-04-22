@@ -3,6 +3,8 @@ ZMock
 
 KISSY mock tool
 
+这是一个是用来截获KISSY中io，ajax请求的小工具  
+
 使用  
 
 先引用  
