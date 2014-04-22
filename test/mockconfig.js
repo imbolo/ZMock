@@ -1,16 +1,17 @@
-//所有.json
 ZMock.mock({
-	url: /\.json/,
+	url: /\.json/, //所有.json结尾的
 	type: 'post',
 	data: null,
-	process: function(data) {
-		if (data.page == 1) {
-			this.data = {
-				content: "page 1"
-			};
+	process: function(request) {
+		if (request.page == 1) {
+			
+			this.data = "str page 1";
 		}
 		else {
-			this.data.content = "page 2";
+			
+			return {
+				content: "obj page 2"
+			};
 		}
 	}
 });
