@@ -3,11 +3,11 @@ ZMock
 
 KISSY mock tool
 
-这是一个是用来截获KISSY中io，ajax请求的小工具  
+这是一个是用来截获KISSY中io，jQuery中ajax请求的小工具  
 
 使用  
 
-先引用  
+先在ajax请求方法调用之前引用  
 
 	<script src="zmock.js" type="text/javascript" charset="utf-8"></script>
 
@@ -44,3 +44,12 @@ KISSY mock tool
 data 和 process 两个参数，只需要传入一个  
 只有data时，返回固定数据  
 用process参数来处理需要模拟的逻辑  
+
+然后就可以调用ajax方法来测试了  
+
+Demo 
+
++ (jQuery ajax)[http://www.mrcoder.org/demo/ZMock/jquery.html]  
+
++ (KISSY ajax)[http://www.mrcoder.org/demo/ZMock/kissy.html]
+

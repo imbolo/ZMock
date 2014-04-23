@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>jQuery Ajax</title>
+	</head>
+	<body>
+		<h2>打开console来查看</h2>
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script src="https://rawgit.com/imbolo/ZMock/master/zmock.js" type="text/javascript" charset="utf-8"></script>
+		<script src="https://rawgit.com/imbolo/ZMock/master/demo/mockconfig.js" type="text/javascript" charset="utf-8"></script>
+		
+		<script>
+		$.ajax({
+			url: '/test/hello.json',
+			type: 'post', 
+			data: {page: 1},
+			dataType:'json',
+			success: function(data) {
+				console.log(data);
+			}
+		});
+		
+		$.ajax({
+			url: '/test/hello.json',
+			type: 'post', 
+			data: {page: 2},
+			dataType:'json',
+			success: function(data) {
+				console.log(data);
+			}
+		});
+		
+		$.ajax({
+			url: '/test/hello',
+			type: 'post', 
+			data: {page: 1},
+			dataType:'json',
+			success: function(data) {
+				console.log(data);
+			}
+		});
+		</script>
+	</body>
+</html>

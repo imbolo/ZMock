@@ -14,9 +14,10 @@ ZMock.mock = function(options) {
 	
 	ZMock._mocked[url + (type || '')] = options;	
 }
-//modify KISSY.io
-KISSY.use('io', function(S, IO) {
+
+// (function(){
 	
+ZMock.overrideAjax = function(libName) {
 	var xhr = {
 		readyState: 4,
 		responseText: '',
@@ -26,28 +27,27 @@ KISSY.use('io', function(S, IO) {
 		statusText: "success",
 		timeoutTimer: null
 	};
+	var _originalAjax, newAjax;
 	
-	var original_ajax = KISSY.io;
+	newAjax = function( options ) {
 	
-	KISSY.io = function( options ) {
-		
 		var mock, tmpMockData;
-		
+	
 		for (var surl in ZMock._mocked) {
-		
+	
 			mock = ZMock._mocked[surl];
-			
+		
 			//match get post ...
 			if (options.type !== undefined && mock.type !== undefined && mock.type !== options.type) continue;
-			
+		
 			//match url
-			if (KISSY.type(mock.url) === "string" ) {
+			if (Object.prototype.toString.apply(mock.url) === "[object String]") {
 				if (mock.url !== options.url) continue;
 			}
-			if (KISSY.type(mock.url) === "regexp") {
+			if (Object.prototype.toString.apply(mock.url) === "[object RegExp]") {
 				if (!mock.url.test(options.url)) continue;
 			}
-			
+		
 			//
 			if (mock.process) {
 				tmpMockData = mock.process.call(mock, options.data);
@@ -57,11 +57,38 @@ KISSY.use('io', function(S, IO) {
 			if (options.success) {
 				options.success(mock.data, 'success', xhr);
 			}
-			
+		
 			return;	
 		}
-		
-		return original_ajax.apply(this, arguments);
+	
+		return _originalAjax.apply(this, arguments);
 
-	}	
-});
+	};
+	
+	switch (libName) {
+		case "jQuery":
+			_originalAjax = $.ajax;
+			$.ajax = newAjax;
+			break;
+		case "KISSY":
+			_originalAjax = KISSY.io;
+			KISSY.io = newAjax;
+			break;
+	}		
+}
+
+if (typeof jQuery !== "undefined") {
+
+	ZMock.overrideAjax("jQuery");
+}
+if (typeof KISSY !== "undefined") {
+	//modify KISSY.io
+	KISSY.use('io', function(S, IO) {
+		
+		ZMock.overrideAjax("KISSY");
+	});
+}
+
+
+
+
