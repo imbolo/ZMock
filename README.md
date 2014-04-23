@@ -1,7 +1,7 @@
 ZMock
 =====
 
-KISSY mock tool
+ajax data mock tool
 
 这是一个是用来截获KISSY中io，jQuery中ajax请求的小工具  
 

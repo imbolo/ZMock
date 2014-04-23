@@ -4,7 +4,7 @@ var ZMock = {
 
 /**
 * url, type, data, process
-*/
+**/
 ZMock.mock = function(options) {
 	
 	var url = options.url,
@@ -15,8 +15,6 @@ ZMock.mock = function(options) {
 	ZMock._mocked[url + (type || '')] = options;	
 }
 
-// (function(){
-	
 ZMock.overrideAjax = function(libName) {
 	var xhr = {
 		readyState: 4,
