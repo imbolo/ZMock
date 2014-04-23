@@ -34,7 +34,7 @@ ajax data mock tool
 	});
 	
 
-参数说明 
+####参数说明 
 
 + url: url地址，可以是字符串或者正则表达式  
 + type: 'post','get'...; 不定义时匹配所有
@@ -47,9 +47,9 @@ data 和 process 两个参数，只需要传入一个
 
 然后就可以调用ajax方法来测试了  
 
-Demo 
+####Demo 
 
-+ (jQuery ajax)[http://www.mrcoder.org/demo/ZMock/jquery.html]  
++ [jQuery ajax](http://www.mrcoder.org/demo/ZMock/jquery.html)  
 
-+ (KISSY ajax)[http://www.mrcoder.org/demo/ZMock/kissy.html]
++ [KISSY ajax](http://www.mrcoder.org/demo/ZMock/kissy.html)
 
