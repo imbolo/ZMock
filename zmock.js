@@ -72,6 +72,7 @@ ZMock.overrideAjax = function(libName) {
 		case "KISSY":
 			_originalAjax = KISSY.io;
 			KISSY.io = newAjax;
+			KISSY.ajax = newAjax;
 			break;
 	}		
 }
