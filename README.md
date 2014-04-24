@@ -21,8 +21,9 @@ ajax data mock tool
 		data: null,
 		process: function(request) {
 			if (request.page == 1) {
-			
-				this.data = "str page 1";
+				
+				var result = "str page 1";
+				return result;
 			}
 			else {
 			

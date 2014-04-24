@@ -29,7 +29,7 @@ ZMock.overrideAjax = function(libName) {
 	
 	newAjax = function( options ) {
 	
-		var mock, tmpMockData;
+		var mock;
 	
 		for (var surl in ZMock._mocked) {
 	
@@ -45,15 +45,16 @@ ZMock.overrideAjax = function(libName) {
 			if (Object.prototype.toString.apply(mock.url) === "[object RegExp]") {
 				if (!mock.url.test(options.url)) continue;
 			}
-		
-			//
-			if (mock.process) {
-				tmpMockData = mock.process.call(mock, options.data);
-				mock.data = tmpMockData || mock.data;
-			}
 
 			if (options.success) {
-				options.success(mock.data, 'success', xhr);
+				if (mock.process) {
+
+					options.success(mock.process.call(mock, options.data), 'success', xhr);
+					
+				}
+				else {
+					options.success(mock.data, 'success', xhr);
+				}
 			}
 		
 			return;	
